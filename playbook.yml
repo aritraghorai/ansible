@@ -1,0 +1,23 @@
+- hosts: localhost
+  connection: local
+  vars:
+    src_key_personal: "./secret/aritraghorai0"
+    dest_key_personal: "{{ lookup('env', 'HOME') }}/.ssh/aritraghorai0"
+    src_key_zemoso: "./secret/aritrazomoso"
+    dest_key_zemoso: "{{ lookup('env', 'HOME') }}/.ssh/aritrazomoso"
+    src_config_path: "./secret/config"
+    dest_config_path: "{{ lookup('env', 'HOME') }}/.ssh/config"
+  tasks:
+    - name: Include ssh taks
+      ansible.builtin.include_tasks:
+        file: "./tasks/ssh.yml"
+      tags:
+        - ssh
+        - mac
+        - arch
+    - name: Setup Dot Files
+      ansible.builtin.include_tasks:
+        file: "./tasks/dotFile.yml"
+      tags:
+        - mac
+        - arch

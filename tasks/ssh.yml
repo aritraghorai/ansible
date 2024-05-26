@@ -1,0 +1,50 @@
+- name: Ensure .ssh directory exists.
+  file:
+    dest: "{{ dest_key_personal | dirname }}"
+    mode: "0700"
+    state: directory
+- name: Copy Personal Secret Key
+  ansible.builtin.copy:
+    src: "{{ src_key_personal }}"
+    dest: "{{ dest_key_personal }}"
+    mode: "0600"
+  tags:
+    - ssh
+    - mac
+    - arch
+- name: Copy Personal Public Key
+  ansible.builtin.copy:
+    src: "{{ src_key_personal }}.pub"
+    dest: "{{ dest_key_personal }}.pub"
+    mode: "0600"
+  tags:
+    - ssh
+    - mac
+    - arch
+- name: Copy Zemoso Secret Key
+  ansible.builtin.copy:
+    src: "{{ src_key_zemoso }}"
+    dest: "{{ dest_key_zemoso }}"
+    mode: "0600"
+  tags:
+    - ssh
+    - mac
+    - arch
+- name: Copy Zemoso Public Key
+  ansible.builtin.copy:
+    src: "{{ src_key_zemoso }}.pub"
+    dest: "{{ dest_key_zemoso }}.pub"
+    mode: "0600"
+  tags:
+    - ssh
+    - mac
+    - arch
+- name: Copy Config File
+  ansible.builtin.copy:
+    src: "{{ src_config_path }}"
+    dest: "{{ dest_config_path }}"
+    mode: "0600"
+  tags:
+    - ssh
+    - mac
+    - arch
