@@ -13,11 +13,10 @@
         file: "./tasks/ssh.yml"
       tags:
         - ssh
-        - mac
-        - arch
     - name: Setup Dot Files
       ansible.builtin.include_tasks:
         file: "./tasks/dotFile.yml"
       tags:
         - mac
         - arch
+        - ubuntu

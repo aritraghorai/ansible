@@ -14,14 +14,30 @@
       - fzf
       - gdu
       - zsh
+      - ubuntu
     state: latest
   tags:
     - arch
-- name: Clone dotfiles repo
-  ansible.builtin.git:
-    repo: https://github.com/aritraghorai/newdotfiles
-    dest: "{{ lookup('env', 'HOME') }}/dotfiles"
-    version: master
+- name: Install packages in debian or ubuntu
+  apt:
+    name:
+      - git
+      - stow
+      - neovim
+      - tmux
+      - fzf
+      - gdu
+      - zsh
+    state: latest
+    update_cache: yes
   tags:
-    - mac
-    - arch
+    - ubuntu
+# - name: Clone dotfiles repo
+#   ansible.builtin.git:
+#     repo: https://github.com/aritraghorai/newdotfiles
+#     dest: "{{ lookup('env', 'HOME') }}/dotfiles"
+#     version: master
+#   tags:
+#     - mac
+#     - arch
+#     - ubuntu
